@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>中文暗网爬虫</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{% static 'vendor/metisMenu/metisMenu.min.css' %}" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="{% static 'vendor/datatables-plugins/dataTables.bootstrap.css' %}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="{% static 'vendor/datatables-responsive/dataTables.responsive.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'dist/css/sb-admin-2.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">中文暗网爬虫</a>
+            </div>
+            <!-- /.navbar-header -->
+
+
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="../index/"><i class="fa fa-dashboard fa-fw"></i> 主页</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> 数据列表<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Data/"> 数据-情报类</a>
+                                </li>
+                                <li>
+                                    <a href="../Service/"> 服务-接单类</a>
+                                </li>
+                                <li>
+                                    <a href="../Virtual_Source/"> 虚拟资源类</a>
+                                </li>
+                                <li>
+                                    <a href="../Material/"> 实体物品类</a>
+                                </li>
+                                <li>
+                                    <a href="../Teach/"> 技术-教学类</a>
+                                </li>
+                                <li>
+                                    <a href="../CVV/"> 卡料-CVV类</a>
+                                </li>
+                                <li>
+                                    <a href="../Basic/"> 基础知识类</a>
+                                </li>
+                                <li>
+                                    <a href="../Private/"> 私人专拍类</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">数据详情</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            数据更新于{{ct.Crwal_time}}
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-1">#</th>
+                                        <th class="col-md-1">发帖人</th>
+                                        <th class="col-md-3">标题</th>
+                                        <th class="col-md-1">发帖时间</th>
+                                        <th class="col-md-1">已卖数量/总数量</th>
+                                        <th class="col-md-1">价格</th>
+                                        <th class="col-md-1">帖子状态</th>
+                                        <th class="col-md-1">帖子种类</th>
+                                        <th class="col-md-1">页面快照</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for row in rows %}
+                                    <tr class="odd gradeX">
+                                        <td>{{row.ID}}</td>
+                                        <td>{{row.Topic_post_username}}</td>
+                                        <td>{{row.Topic_title}}</td>
+                                        <td>{{row.Topic_post_time}}</td>
+                                        <td>{{row.Deal_divide_sales}}</td>
+                                        <td>{{row.Topic_price_dollar}}</td>
+                                        <td>{{row.Topic_sales_status}}</td>
+                                        <td>{{row.Catagory}}</td>
+                                        <td><a href=../static/{{row.Topic_id}}.html>内容详情</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+                <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../static/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../../static/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="../../static/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../../static/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../../static/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../../static/dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true,"order": [[ 3, "desc" ]]
+        });
+    });
+    </script>
+
+</body>
+
+</html>
